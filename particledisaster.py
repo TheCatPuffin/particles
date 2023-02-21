@@ -1,3 +1,5 @@
+#IMPORTANT: I am warning you now about the flashing colours!!!!!!!!!!!!
+
 import pygame, sys, random
 
 class Particlething:
