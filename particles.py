@@ -1,6 +1,6 @@
 import pygame, sys, random
 
-class particle_principal:
+class Particlething:
     def __init__(self):
         self.particles = []
 
@@ -10,31 +10,31 @@ class particle_principal:
             for particle in self.particles:
                 particle[0][1] += particle[2][0]
                 particle[0][0] += particle[2][1]
-                particle[1] -= 0.2
+                particle[1] -= 0.1
                 pygame.draw.circle(screen,(random.randint(0,255),random.randint(0,255),random.randint(0,255)),particle[0],int(particle[1]))
 
     def add_particle(self):
         posx = pygame.mouse.get_pos()[0]
         posy = pygame.mouse.get_pos()[1]
         radius = 10
-        directionx = random.randint(-3,3)
-        directiony = random.randint(-3,3)
-        particle_circle = [[posx,posy],radius,[directionx,directiony]]
-        self.particles.append(particle_circle)
+        directionx = random.uniform(-3,3)
+        directiony = random.uniform(-3,3)
+        particlecircle = [[posx,posy],radius,[directionx,directiony]]
+        self.particles.append(particlecircle)
 
     def delete_particle(self):
-        particle_copy = [particle for particle in self.particles if particle[1] > 0]
-        self.particles = particle_copy
+        particlecopy = [particle for particle in self.particles if particle[1] > 0]
+        self.particles = particlecopy
 
 
 pygame.init()
 screen = pygame.display.set_mode((1200,600))
 clock = pygame.time.Clock()
 
-particle1 = particle_principal()
+particle1 = Particlething()
 
-PARTICLE_EVENT = pygame.USEREVENT + 1
-pygame.time.set_timer(PARTICLE_EVENT,15)
+PARTICLEEVENT = pygame.USEREVENT + 1
+pygame.time.set_timer(PARTICLEEVENT,25)
         
 
 while True:
@@ -42,7 +42,7 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        if event.type == PARTICLE_EVENT:
+        if event.type == PARTICLEEVENT:
             particle1.add_particle()
             particle1.add_particle()
             particle1.add_particle()
